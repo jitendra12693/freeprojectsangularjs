@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="panel pane-defailt text-center panel-margin">
+        <form (ngSubmit)="UpdateProfile()">
+        <div class="panel-heading">
+            <h1>{{myProfile.Firstname}} {{myProfile.Lastname}}</h1>
+        </div>
+        <div class="panel-body">
+                <div class="alert alert-success" *ngIf="successMessage">{{successMessage}}</div>
+                <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <input type="hidden" [value]="myProfile._id">
+                    <input type="text" name="Firstname" [(ngModel)]="myProfile.Firstname" #Firstname="ngModel" class="form-control" placeholder="First Name" required="required">
+                    <div class="text-danger">
+                        <div *ngIf="Firstname.invalid && (Firstname.touched || Firstname.dirty)">
+                            <div *ngIf="Firstname.errors.required">Please enter first name.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="Lastname" [(ngModel)]="myProfile.Lastname" #Lastname="ngModel" class="form-control" placeholder="Last Name" required="required">
+                    <div class="text-danger">
+                        <div *ngIf="Lastname.invalid && (Lastname.touched || Lastname.dirty)">
+                            <div *ngIf="Lastname.errors.required">Please enter last name.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="Email" class="form-control" placeholder="Email" [(ngModel)]="myProfile.Email" #Email="ngModel" required="required" email>
+                    <div class="text-danger">
+                        <div *ngIf="Email.invalid && (Email.touched || Email.dirty)">
+                            <div *ngIf="Email.errors.required">Please enter email.</div>
+                            <div *ngIf="Email.errors.email">Email must be a valid email address</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="MobileNo" [(ngModel)]="myProfile.MobileNo" #MobileNo="ngModel" class="form-control" placeholder="Mobile Number" >
+                </div> 
+                <div class="form-group">
+                    <input type="text" minlength="6" name="CollegeName" [(ngModel)]="myProfile.CollegeName" #CollegeName="ngModel" class="form-control" placeholder="College Name" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="text" minlength="6" name="University" [(ngModel)]="myProfile.University" #University="ngModel" class="form-control" placeholder="University" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="ProgrammingSkill" [(ngModel)]="myProfile.ProgrammingSkill" #ProgrammingSkill="ngModel" class="form-control" placeholder="Programming Skill" >
+                </div> 
+                <div class="form-group">
+                    <input type="text" name="CityName" [(ngModel)]="myProfile.City" class="form-control" placeholder="City" >
+                </div>
+                <div class="form-group">
+                    <textarea name="AboutYourSelf" [value]="myProfile.AboutYourSelf" [(ngModel)]="myProfile.AboutYourSelf" class="form-control" placeholder="About Your Self" ></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="EmployerName" [(ngModel)]="myProfile.EmployerName" class="form-control" placeholder="Are doing job then write your company name ?" >
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <div *ngIf="fileUploadProgress">
+                        Upload progress: {{ fileUploadProgress }}
+                    </div>
+                    <div class="image-preview mb-3" *ngIf="myProfile.ProfileImg">
+                        <img [src]="previewUrl||myProfile.ProfileImg" style="width: 100%;" />                 
+                    </div>
+                    <div class="mb-3" *ngIf="uploadedFilePath">
+                        {{uploadedFilePath}}
+                    </div>
+                    <input type="file" name="ProfileImg" (change)="fileProgress($event)" class="btn btn-info" >
+                    <!-- <button type="button" id="btnUpload" class="btn btn-success">UPLOAD</button> -->
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-lg" >Update Profile</button>
+            <a [routerLink]="['/viewprofile',myProfile._id]" class="btn btn-warning btn-lg" style="margin-left: 1%;" >View Profile</a>
+        </div>
+    </form>
+    </div>
+</div>

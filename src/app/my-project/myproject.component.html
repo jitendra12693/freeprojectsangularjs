@@ -1,0 +1,130 @@
+<div class="container">
+    <div class="panel pane-defailt text-center panel-margin">
+        <div class="panel-heading">
+            <h3>Post your project code.</h3>
+        </div>
+        <div class="panel-body">
+            <div class="alert alert-success" *ngIf="successMessage">{{successMessage}}</div>
+            <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+            <form #projectForm="ngForm" >
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <label for="ProjectName">Project Name </label>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12 form-group">
+                        <input type="text" name="ProjectName" id="ProjectName" [(ngModel)]="projectDetails.ProjectName" #ProjectName="ngModel" class="form-control" placeholder="Project Name" required>
+                        <div class="text-danger">
+                            <div *ngIf="ProjectName.invalid && (ProjectName.touched || ProjectName.dirty)">
+                                <div *ngIf="ProjectName.errors.required">Please enter project name.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <label for="ProjectTags">Project Tags </label>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12 form-group">
+                        <input type="text" id="ProjectTags" name="ProjectTags" [(ngModel)]="projectDetails.ProjectTags" #ProjectTags="ngModel" class="form-control" placeholder="Project Tags" required>
+                        <div class="text-danger">
+                            <div *ngIf="ProjectTags.invalid && (ProjectTags.touched || ProjectTags.dirty)">
+                                <div *ngIf="ProjectTags.errors.required">Please enter project name.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="ProjectPlatform">Project Platform</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-xs-12 form-group">
+                        <input type="text" name="ProjectPlatform" id="ProjectPlatform" placeholder="Project Platform" required [(ngModel)]="projectDetails.ProjectPlatform" #ProjectPlatform="ngModel" class="form-control">
+                        <div class="text-danger">
+                            <div *ngIf="ProjectPlatform.invalid && (ProjectPlatform.touched || ProjectPlatform.dirty)">Project Platform is required.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm 4 col-xs-12 form-group">
+                        <label for="ProgrammingLanguage">Project Platform</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-xs-12 form-group">
+                        <input type="text" name="ProgrammingLanguage"  id="ProgrammingLanguage" placeholder="Programming Language" required [(ngModel)]="projectDetails.ProgrammingLanguage" #ProgrammingLanguage="ngModel" class="form-control">
+                        <div class="text-danger">
+                            <div *ngIf="ProgrammingLanguage.invalid && (ProgrammingLanguage.touched || ProgrammingLanguage.dirty)">Programming Language is required.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="IDETool">IDE Tools</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-xs-12 form-group">
+                        <input type="text" name="IDETool" id="IDETool" placeholder="IDE Tools" required [(ngModel)]="projectDetails.IDETool" #IDETool="ngModel" class="form-control">
+                        <div class="text-danger">
+                            <div *ngIf="IDETool.invalid && (IDETool.touched || IDETool.dirty)">IDE Tools is required.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="Database">Database</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-xs-12 form-group">
+                        <input type="text" name="Database" id="Database" placeholder="Database" required [(ngModel)]="projectDetails.Database" #Database="ngModel" class="form-control">
+                        <div class="text-danger">
+                            <div *ngIf="Database.invalid && (Database.touched || Database.dirty)"> Database is required.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="ProjectType">Project Type</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-xs-12 form-group">
+                        <input type="text" name="ProjectType" id="ProjectType" placeholder="ProjectType" required [(ngModel)]="projectDetails.ProjectType" #ProjectType="ngModel" class="form-control">
+                        <div class="text-danger">
+                            <div *ngIf="ProjectType.invalid && (ProjectType.touched || ProjectType.dirty)"> Database is required.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="ProjectSourceCode">Project source code
+                                (Code + Database zip file):</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-xs-12 form-group">
+                        <input type="file" name="ProjectSourceCode" id="ProjectSourceCode" placeholder="Project Source Code" 
+                        required [(ngModel)]="projectDetails.ProjectSourceCode" #ProjectSourceCode="ngModel" class="form-control" 
+                        accept=".zip" (change)="projectSourceFileSize($event)">
+                        <div class="text-danger">
+                            <div *ngIf="ProjectSourceCode.invalid && (ProjectSourceCode.touched || ProjectSourceCode.dirty)"> Database is required.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="ProjectReport">Report
+                                (Screen shot + Doc + ppt file) :</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-xs-12 form-group">
+                        <input type="file" name="ProjectReport" id="ProjectReport" placeholder="Project Report"  
+                        [(ngModel)]="projectDetails.ProjectReport" class="form-control" accept=".zip" 
+                        (change)="projectReportFileSize($event)">
+                        
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="ProjectDescription">Project Description</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-xs-12 form-group">
+                        <textarea type="text" name="ProjectDescription" id="ProjectDescription" placeholder="Project Description" required [(ngModel)]="projectDetails.ProjectDescription" #ProjectDescription="ngModel" class="form-control"></textarea>
+                        <div class="text-danger">
+                            <div *ngIf="ProjectDescription.invalid && (ProjectDescription.touched || ProjectDescription.dirty)"> Project Description is required.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="ProjectImpStep">Important Step for project</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-xs-12 form-group">
+                        <textarea type="text" name="ProjectImpStep" id="ProjectImpStep" placeholder="Enter important step for project" [(ngModel)]="projectDetails.ProjectImpStep" class="form-control"></textarea>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                        <label for="">Project Screen Shot :
+                                (Select multiple images) :</label>
+                    </div>
+                    <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 form-group">
+                        <input type="file" accept="image/png, image/jpeg" multiple="true" capture="camera" class="form-control">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <button type="button" (click)="AddProject()" [disabled]="projectForm.form.invalid" class="btn btn-lg">Save Project</button>
+            <button type="reset" class="btn btn-lg btn-success" style="margin-left: 1%;">Reset </button>
+        </div>
+    </div>
+</div>

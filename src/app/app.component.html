@@ -1,0 +1,52 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<!-- Toolbar -->
+<nav class="navbar navbar-default navbar-fixed-top" >
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage">Logo</a>
+      <!-- <img *ngIf="currentUser && currentUser.ProfileImg" [src]="currentUser.ProfileImg" class="img-circle" style="height: 1%;width: 18%;" alt="img"> -->
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+            <li><a [routerLink]="['/home']" [routerLinkActive]="'active'" >HOME</a></li>
+            <li><a routerLink="/project">PROJECTS</a></li>
+            <li><a routerLink="/contact">CONTACT</a></li>
+        </ul>
+      <ul class="nav navbar-nav navbar-right"  *ngIf="!currentUser">
+        <li><a routerLink="/register"><i class="fa fa-user-plus"></i> Register</a></li>
+        <li><a routerLink="/login"><i class="fa fa-unlock"></i>Login</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right"  *ngIf="currentUser">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-graduation-cap"></i> Welcome {{currentUser.Firstname}} {{currentUser.Lastname}}!
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu uldropdown">
+              <li><a [routerLink]="['/myprofile/', currentUser._id]">My Profile</a></li>
+              <li><a href="https://www.kashipara.com/panel/">My Dashboard</a></li>
+              <li><a routerLink="myproject">Add Project</a></li>
+          </ul>
+        </li>
+        <li><a (click)="logout()"><i class="fa fa-lock"></i>LogOut
+        
+        </a>
+      </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

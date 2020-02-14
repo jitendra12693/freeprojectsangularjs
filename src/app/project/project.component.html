@@ -1,0 +1,30 @@
+ <!-- Container (Pricing Section) -->
+  <div id="pricing" class="container-fluid">
+    <div class="text-center">
+      <h2>Pricing</h2>
+      <h4>Choose a payment plan that works for you</h4>
+    </div>
+    <div class="row">
+      <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+      <div class="col-sm-4 col-xs-12" *ngFor="let item of users">
+        <div class="panel panel-default text-center">
+          <div class="panel-heading">
+            <h3>{{item.Firstname}} {{item.Lastname}}</h3>
+          </div>
+          <div class="panel-body">
+            <p><strong>20</strong> Lorem</p>
+            <p><strong>15</strong> Ipsum</p>
+            <p><strong>5</strong> Dolor</p>
+            <p><strong>2</strong> Sit</p>
+            <p><strong>Endless</strong> Amet</p>
+          </div>
+          <div class="panel-footer">
+            <h3>$19</h3>
+            <h4>per month</h4>
+            <button class="btn btn-lg">Sign Up</button>
+          </div>
+        </div>      
+      </div>     
+     </div>
+  </div>
+  
